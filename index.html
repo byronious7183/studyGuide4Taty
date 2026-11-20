@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anatomy Quiz Show</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #282342;
+      --purple: #7048a8;
+      --pink: #f5a8cf;
+      --paper: #fffaff;
+      --line: #e5d9f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+	margin: 0;
+	padding: 24px;
+	background:
+		linear-gradient(rgba(252, 230, 242, 0.78), rgba(232, 232, 255, 0.78)),
+		url("images/pony-background.jpg") center / cover fixed;
+	color: var(--ink);
+	font: 17px/1.5 system-ui, sans-serif;
+	}
+
+    main {
+      width: min(720px, 100%);
+      margin: 24px auto;
+      padding: clamp(20px, 5vw, 40px);
+      background: var(--paper);
+      border: 3px solid white;
+      border-radius: 24px;
+      box-shadow: 0 12px 36px #45306c22;
+    }
+    h1 { margin: 0 0 6px; text-align: center; color: var(--purple); }
+    .subtitle, #progress { text-align: center; }
+    #host {
+      margin: 24px 0 12px;
+      padding: 14px 18px;
+      background: #f3ecff;
+      border-radius: 16px;
+    }
+    #question {
+      margin: 20px 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    #answers { display: grid; gap: 10px; }
+    button {
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+    button:hover:enabled { border-color: var(--purple); background: #faf6ff; }
+    button:focus-visible { outline: 3px solid #f0a4ce; outline-offset: 2px; }
+    button:disabled { cursor: default; opacity: .8; }
+    #next, #restart {
+      margin-top: 18px;
+      background: var(--purple);
+      border-color: var(--purple);
+      color: white;
+      font-weight: 700;
+      text-align: center;
+    }
+    #feedback { min-height: 3em; margin: 18px 0 0; font-weight: 600; }
+    .small { color: #655b75; font-size: .92rem; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>✨ Anatomy Quiz Show ✨</h1>
+  <p class="subtitle">A friendly vocabulary challenge</p>
+  <p id="progress" aria-live="polite"></p>
+  <section id="game" aria-labelledby="question">
+    <div id="host" aria-live="polite"></div>
+    <div id="question"></div>
+    <div id="answers"></div>
+    <p id="feedback" aria-live="polite"></p>
+    <button id="next" class="hidden">Next question →</button>
+  </section>
+  <section id="end" class="hidden">
+    <h2>That’s the show!</h2>
+    <p id="result"></p>
+    <button id="restart">Play again</button>
+  </section>
+  <p class="small">Practice definitions, then check them against your class notes.</p>
+</main>
+
+<script>
+const questions = [
+  {
+    term: "Anatomical position",
+    choices: [
+      "Standing upright, facing forward, arms at the sides, palms facing forward",
+      "Lying face down with arms overhead",
+      "Sitting with legs crossed"
+    ],
+    answer: 0,
+    hint: "Picture a person standing at attention and showing their palms."
+  },
+  {
+    term: "Superior",
+    choices: [
+      "Toward the back of the body",
+      "Above or toward the head",
+      "Farther from the body’s midline"
+    ],
+    answer: 1,
+    hint: "In anatomical directions, this means higher up or closer to the head."
+  },
+  {
+    term: "Inferior",
+    choices: [
+      "Below or toward the feet",
+      "Toward the front of the body",
+      "Closer to the point where a limb attaches"
+    ],
+    answer: 0,
+    hint: "Think of the opposite direction from superior."
+  },
+  {
+    term: "Anterior",
+    choices: [
+      "Toward the back",
+      "Toward the front",
+      "Toward the side"
+    ],
+    answer: 1,
+    hint: "This direction points toward the belly side of the body."
+  },
+  {
+    term: "Posterior",
+    choices: [
+      "Toward the back",
+      "Toward the head",
+      "Toward the midline"
+    ],
+    answer: 0,
+    hint: "This direction points toward the back side of the body."
+  },
+  {
+    term: "Medial",
+    choices: [
+      "Farther from the body’s midline",
+      "Closer to the body’s midline",
+      "Closer to the skin’s surface"
+    ],
+    answer: 1,
+    hint: "Imagine a line running down the center of the body."
+  },
+  {
+    term: "Lateral",
+    choices: [
+      "Toward the body’s side, away from the midline",
+      "Toward the body’s center",
+      "Deep inside the body"
+    ],
+    answer: 0,
+    hint: "The opposite of medial."
+  },
+  {
+    term: "Proximal",
+    choices: [
+      "Farther from where a limb attaches",
+      "Closer to where a limb attaches",
+      "Toward the back"
+    ],
+    answer: 1,
+    hint: "Often used for limbs: closer to the shoulder or hip."
+  },
+  {
+    term: "Distal",
+    choices: [
+      "Farther from where a limb attaches",
+      "Closer to where a limb attaches",
+      "Closer to the midline"
+    ],
+    answer: 0,
+    hint: "Often used for limbs: farther from the shoulder or hip."
+  },
+  {
+    term: "Superficial",
+    choices: [
+      "Closer to the body’s surface",
+      "Farther from the body’s surface",
+      "Toward the feet"
+    ],
+    answer: 0,
+    hint: "A superficial structure is nearer the outside."
+  },
+  {
+    term: "Deep",
+    choices: [
+      "Closer to the body’s surface",
+      "Farther inside the body, away from the surface",
+      "Toward the front"
+    ],
+    answer: 1,
+    hint: "The opposite of superficial."
+  },
+  {
+    term: "Sagittal plane",
+    choices: [
+      "Divides the body into left and right portions",
+      "Divides the body into front and back portions",
+      "Divides the body into upper and lower portions"
+    ],
+    answer: 0,
+    hint: "Its name goes with the left-right division."
+  },
+  {
+    term: "Frontal (coronal) plane",
+    choices: [
+      "Divides the body into left and right portions",
+      "Divides the body into front and back portions",
+      "Divides the body into upper and lower portions"
+    ],
+    answer: 1,
+    hint: "Imagine a flat sheet separating the front from the back."
+  },
+  {
+    term: "Transverse plane",
+    choices: [
+      "Divides the body into upper and lower portions",
+      "Divides the body into front and back portions",
+      "Divides the body into left and right portions"
+    ],
+    answer: 0,
+    hint: "This is a horizontal cross-section."
+  }
+];
+
+const hosts = [
+  { name: "Twilight Sparkle", intro: "Let’s use our anatomy smarts!" },
+  { name: "Rainbow Dash", intro: "Ready to race through a question?" },
+  { name: "Pinkie Pie", intro: "Quiz time! You’ve got this!" },
+  { name: "Fluttershy", intro: "Take your time—you can do it." },
+  { name: "Applejack", intro: "Let’s see what you know!" }
+];
+const praise = [
+  "That’s right! Great work!",
+  "Correct! You’re on a roll!",
+  "Yes! Nicely done!",
+  "You nailed it!"
+];
+
+let order = [];
+let current = 0;
+let score = 0;
+let answered = false;
+
+const hostEl = document.querySelector("#host");
+const questionEl = document.querySelector("#question");
+const answersEl = document.querySelector("#answers");
+const feedbackEl = document.querySelector("#feedback");
+const progressEl = document.querySelector("#progress");
+const nextButton = document.querySelector("#next");
+
+function shuffle(items) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
+function startGame() {
+  order = shuffle(questions);
+  current = 0;
+  score = 0;
+  document.querySelector("#game").classList.remove("hidden");
+  document.querySelector("#end").classList.add("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  const q = order[current];
+  const host = hosts[current % hosts.length];
+  progressEl.textContent = `Question ${current + 1} of ${order.length} · Score: ${score}`;
+  hostEl.textContent = `${host.name}: ${host.intro}`;
+  questionEl.textContent = `What does “${q.term}” mean?`;
+  feedbackEl.textContent = "";
+  nextButton.classList.add("hidden");
+  answersEl.replaceChildren();
+
+  q.choices.forEach((choice, index) => {
+    const button = document.createElement("button");
+    button.textContent = choice;
+    button.addEventListener("click", () => chooseAnswer(index));
+    answersEl.append(button);
+  });
+}
+
+function chooseAnswer(index) {
+  if (answered) return;
+  answered = true;
+  const q = order[current];
+  const buttons = [...answersEl.querySelectorAll("button")];
+  buttons.forEach(button => button.disabled = true);
+
+  if (index === q.answer) {
+    score++;
+    feedbackEl.textContent = praise[Math.floor(Math.random() * praise.length)];
+    buttons[index].style.borderColor = "#38a56a";
+  } else {
+    feedbackEl.textContent =
+      `Not quite. Hint: ${q.hint} The correct answer is: ${q.choices[q.answer]}`;
+    buttons[index].style.borderColor = "#d66b83";
+    buttons[q.answer].style.borderColor = "#38a56a";
+  }
+
+  progressEl.textContent = `Question ${current + 1} of ${order.length} · Score: ${score}`;
+  nextButton.textContent = current === order.length - 1 ? "See my results" : "Next question →";
+  nextButton.classList.remove("hidden");
+}
+
+nextButton.addEventListener("click", () => {
+  current++;
+  if (current < order.length) {
+    showQuestion();
+  } else {
+    document.querySelector("#game").classList.add("hidden");
+    document.querySelector("#end").classList.remove("hidden");
+    progressEl.textContent = "";
+    document.querySelector("#result").textContent =
+      `You scored ${score} out of ${order.length}. ${score === order.length
+        ? "Perfect score—fantastic work!"
+        : "Every round is a chance to learn something new!"}`;
+  }
+});
+
+document.querySelector("#restart").addEventListener("click", startGame);
+startGame();
+</script>
+</body>
+</html>
