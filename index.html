@@ -104,7 +104,7 @@
 <body>
 <main>
   <h1>✨ Anatomy Quiz Show ✨</h1>
-  <p class="subtitle">A friendly vocabulary challenge</p>
+  <p class="subtitle">A friendly anatomy trivia challenge</p>
   <p id="progress" aria-live="polite"></p>
   <section id="game" aria-labelledby="question">
     <div id="host" aria-live="polite"></div>
@@ -117,7 +117,7 @@
 	<h2>That’s the show!</h2>
 	<p id="result"></p>
 	<button id="start-brain">Start the brain round →</button>
-	<button id="restart">Play vocabulary again</button>
+	<button id="restart">Play anatomy trivia again</button>
   </section>
   <section id="brain-round" class="hidden">
 	<p id="brain-progress"></p>
@@ -135,150 +135,1638 @@
 	</section>
 
 	
-  <p class="small">Practice definitions, then check them against your class notes.</p>
+  <p class="small">Practice your anatomy knowledge, then check them against your class notes.</p>
 </main>
 
 <script>
 const questions = [
   {
-    term: "Anatomical position",
+    term: "Ventricles",
+    prompt: "How many ventricles does the brain have?",
     choices: [
-      "Standing upright, facing forward, arms at the sides, palms facing forward",
-      "Lying face down with arms overhead",
-      "Sitting with legs crossed"
-    ],
-    answer: 0,
-    hint: "Picture a person standing at attention and showing their palms."
-  },
-  {
-    term: "Superior",
-    choices: [
-      "Toward the back of the body",
-      "Above or toward the head",
-      "Farther from the body’s midline"
+      "Three: lateral, third, and fourth",
+      "Four: two lateral, the third, and the fourth",
+      "Two: left and right"
     ],
     answer: 1,
-    hint: "In anatomical directions, this means higher up or closer to the head."
+    hint: "Two lateral ventricles plus two midline ventricles."
   },
   {
-    term: "Inferior",
+    term: "Ventricles",
+    prompt: "What fluid fills the ventricles?",
     choices: [
-      "Below or toward the feet",
-      "Toward the front of the body",
-      "Closer to the point where a limb attaches"
+      "Cerebrospinal fluid (CSF)",
+      "Lymph",
+      "Blood plasma"
     ],
     answer: 0,
-    hint: "Think of the opposite direction from superior."
+    hint: "The fluid also cushions the brain and spinal cord."
   },
   {
-    term: "Anterior",
+    term: "Ventricles",
+    prompt: "Which structure connects each lateral ventricle to the third ventricle?",
     choices: [
-      "Toward the back",
-      "Toward the front",
-      "Toward the side"
+      "Interventricular foramen",
+      "Central canal",
+      "Cerebral aqueduct"
+    ],
+    answer: 0,
+    hint: "Also called the foramen of Monro."
+  },
+  {
+    term: "Ventricles",
+    prompt: "Which structure connects the third ventricle to the fourth ventricle?",
+    choices: [
+      "Central canal",
+      "Cerebral aqueduct",
+      "Interventricular foramen"
     ],
     answer: 1,
-    hint: "This direction points toward the belly side of the body."
+    hint: "It is also called the aqueduct of Sylvius."
   },
   {
-    term: "Posterior",
+    term: "Ventricles",
+    prompt: "Through which part of the brainstem does the cerebral aqueduct run?",
     choices: [
-      "Toward the back",
-      "Toward the head",
-      "Toward the midline"
+      "Medulla oblongata",
+      "Pons",
+      "Midbrain"
     ],
-    answer: 0,
-    hint: "This direction points toward the back side of the body."
+    answer: 2,
+    hint: "It is the topmost part of the brainstem."
   },
   {
-    term: "Medial",
+    term: "Ventricles",
+    prompt: "Which ventricle lies in the midline between the two halves of the thalamus?",
     choices: [
-      "Farther from the body’s midline",
-      "Closer to the body’s midline",
-      "Closer to the skin’s surface"
-    ],
-    answer: 1,
-    hint: "Imagine a line running down the center of the body."
-  },
-  {
-    term: "Lateral",
-    choices: [
-      "Toward the body’s side, away from the midline",
-      "Toward the body’s center",
-      "Deep inside the body"
-    ],
-    answer: 0,
-    hint: "The opposite of medial."
-  },
-  {
-    term: "Proximal",
-    choices: [
-      "Farther from where a limb attaches",
-      "Closer to where a limb attaches",
-      "Toward the back"
+      "Fourth ventricle",
+      "Third ventricle",
+      "Lateral ventricle"
     ],
     answer: 1,
-    hint: "Often used for limbs: closer to the shoulder or hip."
+    hint: "It sits in the diencephalon."
   },
   {
-    term: "Distal",
+    term: "Ventricles",
+    prompt: "Which ventricle sits between the pons/medulla and the cerebellum?",
     choices: [
-      "Farther from where a limb attaches",
-      "Closer to where a limb attaches",
-      "Closer to the midline"
-    ],
-    answer: 0,
-    hint: "Often used for limbs: farther from the shoulder or hip."
-  },
-  {
-    term: "Superficial",
-    choices: [
-      "Closer to the body’s surface",
-      "Farther from the body’s surface",
-      "Toward the feet"
-    ],
-    answer: 0,
-    hint: "A superficial structure is nearer the outside."
-  },
-  {
-    term: "Deep",
-    choices: [
-      "Closer to the body’s surface",
-      "Farther inside the body, away from the surface",
-      "Toward the front"
+      "Lateral ventricle",
+      "Fourth ventricle",
+      "Third ventricle"
     ],
     answer: 1,
-    hint: "The opposite of superficial."
+    hint: "It is the most inferior ventricle."
   },
   {
-    term: "Sagittal plane",
+    term: "Ventricles",
+    prompt: "What does the fourth ventricle continue into inferiorly?",
     choices: [
-      "Divides the body into left and right portions",
-      "Divides the body into front and back portions",
-      "Divides the body into upper and lower portions"
+      "Central canal of the spinal cord",
+      "Interventricular foramen",
+      "Cerebral aqueduct"
     ],
     answer: 0,
-    hint: "Its name goes with the left-right division."
+    hint: "CSF flows down into the spinal cord."
   },
   {
-    term: "Frontal (coronal) plane",
+    term: "Ventricles",
+    prompt: "Which ventricles are the largest and C-shaped?",
     choices: [
-      "Divides the body into left and right portions",
-      "Divides the body into front and back portions",
-      "Divides the body into upper and lower portions"
+      "Fourth ventricle",
+      "Lateral ventricles",
+      "Third ventricle"
     ],
     answer: 1,
-    hint: "Imagine a flat sheet separating the front from the back."
+    hint: "There is one in each cerebral hemisphere."
   },
   {
-    term: "Transverse plane",
+    term: "Ventricles",
+    prompt: "Name the three horns of each lateral ventricle shown on the diagrams.",
     choices: [
-      "Divides the body into upper and lower portions",
-      "Divides the body into front and back portions",
-      "Divides the body into left and right portions"
+      "Anterior, posterior, and inferior",
+      "Medial, lateral, and dorsal",
+      "Anterior, posterior, and superior"
     ],
     answer: 0,
-    hint: "This is a horizontal cross-section."
+    hint: "Each horn points into a different lobe."
+  },
+  {
+    term: "Ventricles",
+    prompt: "Which lobe does the anterior horn of the lateral ventricle extend into?",
+    choices: [
+      "Frontal lobe",
+      "Occipital lobe",
+      "Temporal lobe"
+    ],
+    answer: 0,
+    hint: "Anterior means toward the front."
+  },
+  {
+    term: "Ventricles",
+    prompt: "Which lobe does the posterior horn of the lateral ventricle extend into?",
+    choices: [
+      "Temporal lobe",
+      "Frontal lobe",
+      "Occipital lobe"
+    ],
+    answer: 2,
+    hint: "Posterior means toward the back."
+  },
+  {
+    term: "Ventricles",
+    prompt: "Which lobe does the inferior horn of the lateral ventricle extend into?",
+    choices: [
+      "Frontal lobe",
+      "Parietal lobe",
+      "Temporal lobe"
+    ],
+    answer: 2,
+    hint: "It curves down and forward."
+  },
+  {
+    term: "Ventricles",
+    prompt: "Which is the correct path of CSF from the lateral ventricles to the spinal cord?",
+    choices: [
+      "Lateral ventricle, cerebral aqueduct, third ventricle, interventricular foramen, fourth ventricle, central canal",
+      "Lateral ventricle, interventricular foramen, third ventricle, cerebral aqueduct, fourth ventricle, central canal",
+      "Fourth ventricle, cerebral aqueduct, third ventricle, interventricular foramen, lateral ventricle, central canal"
+    ],
+    answer: 1,
+    hint: "Think top to bottom: foramen first, aqueduct second."
+  },
+  {
+    term: "Ventricles",
+    prompt: "What structure produces most CSF, and what can happen if the cerebral aqueduct is blocked?",
+    choices: [
+      "Arachnoid granulations; CSF backs up and causes meningitis",
+      "Choroid plexus; CSF backs up and causes hydrocephalus",
+      "Pituitary gland; CSF backs up and causes diabetes"
+    ],
+    answer: 1,
+    hint: "Blocked flow causes fluid to build up."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Name the four lobes of each cerebral hemisphere.",
+    choices: [
+      "Frontal, occipital, limbic, and pontine",
+      "Frontal, parietal, temporal, and occipital",
+      "Frontal, parietal, temporal, and cerebellar"
+    ],
+    answer: 1,
+    hint: "Each lobe is named for the skull bone above it."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which lobe is at the front of the brain and handles decision-making and voluntary movement?",
+    choices: [
+      "Frontal lobe",
+      "Temporal lobe",
+      "Parietal lobe"
+    ],
+    answer: 0,
+    hint: "Memory trick: Frontal = Function, Figuring out, Front of brain."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which lobe processes body position and sensory perception?",
+    choices: [
+      "Parietal lobe",
+      "Occipital lobe",
+      "Temporal lobe"
+    ],
+    answer: 0,
+    hint: "Memory trick: Parietal Processes Position and Perception."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which lobe is mainly responsible for hearing?",
+    choices: [
+      "Occipital lobe",
+      "Temporal lobe",
+      "Frontal lobe"
+    ],
+    answer: 1,
+    hint: "Memory trick: Temporal = Tempo (auditory)."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which lobe oversees vision?",
+    choices: [
+      "Occipital lobe",
+      "Frontal lobe",
+      "Parietal lobe"
+    ],
+    answer: 0,
+    hint: "Memory trick: Occipital Oversees Optics."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which sulcus separates the frontal lobe from the parietal lobe?",
+    choices: [
+      "Central sulcus",
+      "Lateral sulcus",
+      "Longitudinal fissure"
+    ],
+    answer: 0,
+    hint: "It runs roughly top to bottom across the cerebrum."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which sulcus separates the temporal lobe from the frontal and parietal lobes?",
+    choices: [
+      "Longitudinal fissure",
+      "Central sulcus",
+      "Lateral sulcus"
+    ],
+    answer: 2,
+    hint: "It runs along the side of the brain."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which fissure separates the right and left cerebral hemispheres?",
+    choices: [
+      "Longitudinal fissure",
+      "Central sulcus",
+      "Lateral sulcus"
+    ],
+    answer: 0,
+    hint: "It runs front to back down the middle."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What is the term for a raised ridge of cerebral cortex?",
+    choices: [
+      "Sulcus",
+      "Fissure",
+      "Gyrus"
+    ],
+    answer: 2,
+    hint: "A groove is a sulcus."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which gyrus is the primary motor area, and in which lobe is it?",
+    choices: [
+      "Postcentral gyrus, in the parietal lobe",
+      "Precentral gyrus, in the frontal lobe",
+      "Precentral gyrus, in the parietal lobe"
+    ],
+    answer: 1,
+    hint: "Motor is in front of the central sulcus."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which gyrus is the primary somatosensory area, and in which lobe is it?",
+    choices: [
+      "Postcentral gyrus, in the frontal lobe",
+      "Precentral gyrus, in the frontal lobe",
+      "Postcentral gyrus, in the parietal lobe"
+    ],
+    answer: 2,
+    hint: "Sensory is behind the central sulcus."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which gyrus lies just in front of the central sulcus?",
+    choices: [
+      "Precentral gyrus",
+      "Temporal gyrus",
+      "Postcentral gyrus"
+    ],
+    answer: 0,
+    hint: "Pre means before."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which gyrus lies just behind the central sulcus?",
+    choices: [
+      "Occipital gyrus",
+      "Precentral gyrus",
+      "Postcentral gyrus"
+    ],
+    answer: 2,
+    hint: "Post means after."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What is the cerebrum?",
+    choices: [
+      "The largest part of the brain, with two hemispheres, responsible for conscious thought and voluntary movement",
+      "The small structure at the back of the brain that coordinates balance",
+      "The part of the brainstem that controls breathing"
+    ],
+    answer: 0,
+    hint: "It makes up most of the brain's volume."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What does the corpus callosum do?",
+    choices: [
+      "Relays sensory information to the cortex",
+      "Connects the two cerebral hemispheres",
+      "Produces cerebrospinal fluid"
+    ],
+    answer: 1,
+    hint: "Its name means thick body, and it is made of white matter."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which C-shaped white matter tract lies beneath the corpus callosum?",
+    choices: [
+      "Fornix",
+      "Pineal gland",
+      "Arbor vitae"
+    ],
+    answer: 0,
+    hint: "Its name means arch."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What are the two main parts of the diencephalon shown on the diagram?",
+    choices: [
+      "Thalamus and hypothalamus",
+      "Cerebrum and cerebellum",
+      "Pons and medulla"
+    ],
+    answer: 0,
+    hint: "Both sit deep in the center of the brain."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What is the main function of the thalamus?",
+    choices: [
+      "Producing melatonin",
+      "Relay station for sensory information going to the cerebral cortex",
+      "Coordinating balance and movement"
+    ],
+    answer: 1,
+    hint: "Almost all sensory input passes through it."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What are the main functions of the hypothalamus?",
+    choices: [
+      "Relaying sensory information to the cortex",
+      "Maintaining homeostasis and controlling the pituitary gland",
+      "Coordinating smooth movement"
+    ],
+    answer: 1,
+    hint: "It regulates temperature, hunger, thirst, and sleep."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which gland is attached to the hypothalamus and is called the master gland?",
+    choices: [
+      "Thalamus",
+      "Pituitary gland (hypophysis)",
+      "Pineal gland"
+    ],
+    answer: 1,
+    hint: "Look just below the hypothalamus."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which small gland near the thalamus secretes melatonin?",
+    choices: [
+      "Pineal gland",
+      "Pituitary gland",
+      "Hypothalamus"
+    ],
+    answer: 0,
+    hint: "Melatonin helps regulate sleep."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What are the three parts of the brainstem, from top to bottom?",
+    choices: [
+      "Medulla oblongata, pons, midbrain",
+      "Pons, midbrain, medulla oblongata",
+      "Midbrain, pons, medulla oblongata"
+    ],
+    answer: 2,
+    hint: "The lowest part joins the spinal cord."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which part of the brainstem is the most superior?",
+    choices: [
+      "Midbrain",
+      "Medulla oblongata",
+      "Pons"
+    ],
+    answer: 0,
+    hint: "It lies just below the diencephalon."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What does the word pons mean, and what does it do?",
+    choices: [
+      "Bridge; relays signals between the cerebrum and cerebellum",
+      "Horse's tail; a bundle of nerve roots",
+      "Tree; branches of white matter inside the cerebellum"
+    ],
+    answer: 0,
+    hint: "It also helps regulate breathing."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which brainstem part contains vital centers for heart rate, breathing, and blood pressure?",
+    choices: [
+      "Midbrain",
+      "Medulla oblongata",
+      "Pons"
+    ],
+    answer: 1,
+    hint: "It is the lowest part of the brainstem."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "Which brainstem part connects directly to the spinal cord?",
+    choices: [
+      "Midbrain",
+      "Pons",
+      "Medulla oblongata"
+    ],
+    answer: 2,
+    hint: "It is the most inferior part."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What are the corpora quadrigemina, and where are they?",
+    choices: [
+      "Four lobes of the cerebellum",
+      "Four horns of the lateral ventricles",
+      "Four bumps on the dorsal midbrain (superior and inferior colliculi)"
+    ],
+    answer: 2,
+    hint: "Quadrigemina means four twins."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What is the cerebellum's main job?",
+    choices: [
+      "Coordinating balance, posture, and smooth movement",
+      "Producing cerebrospinal fluid",
+      "Relaying sensory information to the cortex"
+    ],
+    answer: 0,
+    hint: "It sits at the back and bottom of the brain."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What is the arbor vitae?",
+    choices: [
+      "A fluid-filled channel in the spinal cord",
+      "The tree-like branching pattern of white matter inside the cerebellum",
+      "The band of fibers joining the hemispheres"
+    ],
+    answer: 1,
+    hint: "Arbor vitae means tree of life."
+  },
+  {
+    term: "Brain Structures",
+    prompt: "What is the choroid plexus?",
+    choices: [
+      "A strand of pia mater that anchors the spinal cord",
+      "A network of capillaries in the ventricles that produces CSF",
+      "A band of fibers that connects the hemispheres"
+    ],
+    answer: 1,
+    hint: "It lies inside the ventricles."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Name the three meninges from outermost to innermost.",
+    choices: [
+      "Dura mater, arachnoid mater, pia mater",
+      "Pia mater, arachnoid mater, dura mater",
+      "Arachnoid mater, dura mater, pia mater"
+    ],
+    answer: 0,
+    hint: "Tough layer first, delicate layer last."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Which meninx is the tough, outermost layer?",
+    choices: [
+      "Pia mater",
+      "Arachnoid mater",
+      "Dura mater"
+    ],
+    answer: 2,
+    hint: "Its name means tough mother."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Which meninx is the thin, web-like middle layer?",
+    choices: [
+      "Dura mater",
+      "Pia mater",
+      "Arachnoid mater"
+    ],
+    answer: 2,
+    hint: "Arachnoid means spider-like."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Which meninx clings directly to the surface of the brain and spinal cord?",
+    choices: [
+      "Arachnoid mater",
+      "Dura mater",
+      "Pia mater"
+    ],
+    answer: 2,
+    hint: "Its name means gentle mother."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Where does CSF circulate around the brain?",
+    choices: [
+      "Between the dura mater and the skull",
+      "In the subarachnoid space",
+      "In the epidural space"
+    ],
+    answer: 1,
+    hint: "It is under the arachnoid mater."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "What are the main functions of the meninges?",
+    choices: [
+      "Conduct nerve impulses to the muscles",
+      "Protect and support the brain and spinal cord and carry blood vessels and CSF",
+      "Produce hormones and regulate body temperature"
+    ],
+    answer: 1,
+    hint: "They are protective coverings."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Which cranial nerve attaches to the olfactory bulb, which sits on the underside of the frontal lobe?",
+    choices: [
+      "Optic nerve (II)",
+      "Olfactory nerve (I)",
+      "Oculomotor nerve (III)"
+    ],
+    answer: 1,
+    hint: "The nerve is named for smell."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "What is the optic chiasm?",
+    choices: [
+      "The X-shaped crossing point where fibers from the two optic nerves partly cross",
+      "The junction where the lateral ventricles meet",
+      "The point where the spinal cord meets the medulla"
+    ],
+    answer: 0,
+    hint: "Chiasm comes from the Greek letter chi, X."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Where is the pituitary gland relative to the optic chiasm?",
+    choices: [
+      "Just posterior and inferior to it",
+      "Just anterior and superior to it",
+      "Lateral to the temporal lobe"
+    ],
+    answer: 0,
+    hint: "It hangs from the hypothalamus."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "On a midsagittal view, which structure forms the large arched band above the lateral ventricles?",
+    choices: [
+      "Fornix",
+      "Thalamus",
+      "Corpus callosum"
+    ],
+    answer: 2,
+    hint: "It connects the two hemispheres."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "Which of these protect the brain besides the meninges?",
+    choices: [
+      "Sternum, lymph, and fat",
+      "Skull, CSF, and the blood-brain barrier",
+      "Ribs, bile, and skin"
+    ],
+    answer: 1,
+    hint: "One is bone, one is fluid, and one is a selective barrier."
+  },
+  {
+    term: "Meninges and Other Terms",
+    prompt: "What is the difference between gray matter and white matter?",
+    choices: [
+      "Gray is only found in the spinal cord; white is only found in the brain",
+      "Gray is myelinated axons; white has cell bodies",
+      "Gray has cell bodies and unmyelinated fibers; white is myelinated axons forming tracts"
+    ],
+    answer: 2,
+    hint: "Myelin gives white matter its color."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is I, and what does it do?",
+    choices: [
+      "Oculomotor: eye movement (motor)",
+      "Olfactory: smell (sensory)",
+      "Optic: vision (sensory)"
+    ],
+    answer: 1,
+    hint: "Ooh Olfactory is first on the mnemonic."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is II, and what does it do?",
+    choices: [
+      "Trochlear: eye movement (motor)",
+      "Optic: vision (sensory)",
+      "Olfactory: smell (sensory)"
+    ],
+    answer: 1,
+    hint: "It carries signals from the retina."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is III?",
+    choices: [
+      "Abducens",
+      "Trochlear",
+      "Oculomotor"
+    ],
+    answer: 2,
+    hint: "Ooh Oculomotor is third."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "What are the functions of the oculomotor nerve?",
+    choices: [
+      "Hearing and balance",
+      "Moves most eye muscles, raises the eyelid, and constricts the pupil",
+      "Taste and facial expression"
+    ],
+    answer: 1,
+    hint: "It does more than just move the eye up."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is IV, and what is it known for?",
+    choices: [
+      "Abducens: turns the eye laterally; the longest cranial nerve",
+      "Oculomotor: raises the eyelid; the largest cranial nerve",
+      "Trochlear: moves the eye down and out; the smallest cranial nerve"
+    ],
+    answer: 2,
+    hint: "It controls the superior oblique muscle."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is V?",
+    choices: [
+      "Facial",
+      "Trigeminal",
+      "Glossopharyngeal"
+    ],
+    answer: 1,
+    hint: "Touch Trigeminal is fifth."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "What are the functions of the trigeminal nerve?",
+    choices: [
+      "Face sensation and control of the chewing muscles",
+      "Facial expression and taste",
+      "Hearing and balance"
+    ],
+    answer: 0,
+    hint: "It is both sensory and motor."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Name the three divisions of the trigeminal nerve.",
+    choices: [
+      "Frontal, temporal, and parietal",
+      "Ophthalmic, maxillary, and mandibular",
+      "Optic, olfactory, and oculomotor"
+    ],
+    answer: 1,
+    hint: "They serve the forehead, mid-face, and lower jaw."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is VI, and what does it do?",
+    choices: [
+      "Oculomotor: raises the eyelid (motor)",
+      "Trochlear: turns the eye medially (motor)",
+      "Abducens: turns the eye laterally (motor)"
+    ],
+    answer: 2,
+    hint: "It controls the lateral rectus."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is VII?",
+    choices: [
+      "Trigeminal",
+      "Facial",
+      "Vagus"
+    ],
+    answer: 1,
+    hint: "Feel Facial is seventh."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "What are the functions of the facial nerve?",
+    choices: [
+      "Chewing and scalp sensation",
+      "Facial expression, taste from the front of the tongue, and tears and saliva",
+      "Shoulder shrug and head turning"
+    ],
+    answer: 1,
+    hint: "It is both sensory and motor."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is VIII, and what does it do?",
+    choices: [
+      "Facial: expression and taste (both)",
+      "Glossopharyngeal: taste and swallowing (both)",
+      "Vestibulocochlear: hearing and balance (sensory)"
+    ],
+    answer: 2,
+    hint: "It has two parts, one for hearing and one for balance."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is IX?",
+    choices: [
+      "Hypoglossal",
+      "Glossopharyngeal",
+      "Vagus"
+    ],
+    answer: 1,
+    hint: "Good Glossopharyngeal is ninth."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "What are the functions of the glossopharyngeal nerve?",
+    choices: [
+      "Taste from the back of the tongue, pharynx sensation, swallowing, and parotid saliva",
+      "Taste from the front of the tongue and facial expression",
+      "Tongue movement and speech"
+    ],
+    answer: 0,
+    hint: "Its name means tongue and throat."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is X, and what is special about it?",
+    choices: [
+      "Vagus: the longest cranial nerve, wandering to the abdomen",
+      "Trochlear: the smallest cranial nerve",
+      "Trochlear: the only nerve exiting the dorsal midbrain"
+    ],
+    answer: 0,
+    hint: "Vagus means wanderer."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "What are the functions of the vagus nerve?",
+    choices: [
+      "Parasympathetic control of the heart, lungs, and digestive tract; swallowing and speech",
+      "Eye movement and pupil constriction",
+      "Shoulder and head movement"
+    ],
+    answer: 0,
+    hint: "It is both sensory and motor."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is XI?",
+    choices: [
+      "Hypoglossal",
+      "Vagus",
+      "Spinal accessory (accessory)"
+    ],
+    answer: 2,
+    hint: "Such Spinal accessory is eleventh."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which muscles does the accessory nerve control?",
+    choices: [
+      "Trapezius and sternocleidomastoid",
+      "Tongue muscles",
+      "Chewing muscles"
+    ],
+    answer: 0,
+    hint: "Shoulder shrug and head turning."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is XII, and what does it do?",
+    choices: [
+      "Accessory: moves the shoulders (motor)",
+      "Glossopharyngeal: taste (both)",
+      "Hypoglossal: moves the tongue (motor)"
+    ],
+    answer: 2,
+    hint: "Heaven Hypoglossal is twelfth."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves are purely sensory?",
+    choices: [
+      "V, VII, and IX",
+      "III, IV, and VI",
+      "I, II, and VIII"
+    ],
+    answer: 2,
+    hint: "Smell, vision, and hearing and balance."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves are purely motor?",
+    choices: [
+      "III, IV, VI, XI, and XII",
+      "V, VII, IX, and X",
+      "I, II, and VIII"
+    ],
+    answer: 0,
+    hint: "Think eye movement, shoulder, and tongue."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves are both sensory and motor?",
+    choices: [
+      "III, IV, VI, XI, and XII",
+      "V, VII, IX, and X",
+      "I, II, and VIII"
+    ],
+    answer: 1,
+    hint: "Trigeminal, facial, glossopharyngeal, and vagus."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which three cranial nerves control eye movement?",
+    choices: [
+      "Oculomotor (III), trigeminal (V), and facial (VII)",
+      "Optic (II), oculomotor (III), and trochlear (IV)",
+      "Oculomotor (III), trochlear (IV), and abducens (VI)"
+    ],
+    answer: 2,
+    hint: "They are consecutive except for V."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves carry taste?",
+    choices: [
+      "Trigeminal (V), accessory (XI), and hypoglossal (XII)",
+      "Olfactory (I), optic (II), and vestibulocochlear (VIII)",
+      "Facial (VII), glossopharyngeal (IX), and vagus (X)"
+    ],
+    answer: 2,
+    hint: "The tongue and throat are involved."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves carry parasympathetic fibers?",
+    choices: [
+      "I, II, and VIII",
+      "III, VII, IX, and X",
+      "IV, VI, XI, and XII"
+    ],
+    answer: 1,
+    hint: "The oculomotor, facial, glossopharyngeal, and vagus."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves are involved in swallowing?",
+    choices: [
+      "Olfactory (I), optic (II), and vestibulocochlear (VIII)",
+      "Oculomotor (III), trochlear (IV), and abducens (VI)",
+      "Glossopharyngeal (IX), vagus (X), and hypoglossal (XII)"
+    ],
+    answer: 2,
+    hint: "Throat and tongue nerves."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve handles hearing and balance?",
+    choices: [
+      "Glossopharyngeal nerve (IX)",
+      "Facial nerve (VII)",
+      "Vestibulocochlear nerve (VIII)"
+    ],
+    answer: 2,
+    hint: "Its name includes the inner ear structures."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is damaged if a person cannot shrug their shoulders?",
+    choices: [
+      "Hypoglossal nerve (XII)",
+      "Accessory nerve (XI)",
+      "Vagus nerve (X)"
+    ],
+    answer: 1,
+    hint: "It controls the trapezius."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is damaged if the eye cannot look outward?",
+    choices: [
+      "Oculomotor nerve (III)",
+      "Trochlear nerve (IV)",
+      "Abducens nerve (VI)"
+    ],
+    answer: 2,
+    hint: "It controls the lateral rectus."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is damaged if one side of the face droops (Bell's palsy)?",
+    choices: [
+      "Glossopharyngeal nerve (IX)",
+      "Trigeminal nerve (V)",
+      "Facial nerve (VII)"
+    ],
+    answer: 2,
+    hint: "It controls the muscles of facial expression."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve causes the tongue to deviate to one side when damaged?",
+    choices: [
+      "Hypoglossal nerve (XII)",
+      "Glossopharyngeal nerve (IX)",
+      "Accessory nerve (XI)"
+    ],
+    answer: 0,
+    hint: "It moves the tongue."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve is damaged if a person cannot smell?",
+    choices: [
+      "Trigeminal nerve (V)",
+      "Olfactory nerve (I)",
+      "Optic nerve (II)"
+    ],
+    answer: 1,
+    hint: "It is the first cranial nerve."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerve carries the pain of trigeminal neuralgia?",
+    choices: [
+      "Facial nerve (VII)",
+      "Glossopharyngeal nerve (IX)",
+      "Trigeminal nerve (V)"
+    ],
+    answer: 2,
+    hint: "The name gives it away."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves attach to the cerebrum or forebrain rather than the brainstem?",
+    choices: [
+      "I (olfactory) and II (optic)",
+      "III (oculomotor) and IV (trochlear)",
+      "IX (glossopharyngeal) and X (vagus)"
+    ],
+    answer: 0,
+    hint: "They are the first two."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves attach to the midbrain?",
+    choices: [
+      "V (trigeminal) and VI (abducens)",
+      "IX (glossopharyngeal) and X (vagus)",
+      "III (oculomotor) and IV (trochlear)"
+    ],
+    answer: 2,
+    hint: "The topmost part of the brainstem."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves attach to the pons region?",
+    choices: [
+      "IX, X, XI, and XII",
+      "V, VI, VII, and VIII",
+      "III, IV, V, and VI"
+    ],
+    answer: 1,
+    hint: "The middle group of cranial nerves."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "Which cranial nerves attach to the medulla?",
+    choices: [
+      "V, VI, VII, and VIII",
+      "IX, X, XI, and XII",
+      "I, II, III, and IV"
+    ],
+    answer: 1,
+    hint: "The lowest group of cranial nerves."
+  },
+  {
+    term: "Cranial Nerves",
+    prompt: "What does the note \"omit proprioception\" on the chart mean?",
+    choices: [
+      "Leave out hearing when listing nerve functions",
+      "Leave out the sense of body position when listing nerve functions",
+      "Leave out the sense of taste when listing nerve functions"
+    ],
+    answer: 1,
+    hint: "Proprioception is the sense of where your body is in space."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Where does the spinal cord begin?",
+    choices: [
+      "At the foramen magnum, continuing from the medulla oblongata",
+      "At the L1 vertebra",
+      "At the pons"
+    ],
+    answer: 0,
+    hint: "It is continuous with the lowest part of the brainstem."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "At about what vertebral level does the adult spinal cord end?",
+    choices: [
+      "T1–T2",
+      "L1–L2",
+      "S1–S2"
+    ],
+    answer: 1,
+    hint: "It is shorter than the vertebral column."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the conus medullaris?",
+    choices: [
+      "The tapered, cone-shaped inferior end of the spinal cord",
+      "The bundle of spinal nerve roots below the cord",
+      "A strand of pia mater anchoring the cord to the coccyx"
+    ],
+    answer: 0,
+    hint: "Conus means cone."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the cauda equina?",
+    choices: [
+      "The tapered end of the spinal cord",
+      "The bundle of spinal nerve roots below the conus medullaris",
+      "A strand of pia mater anchoring the cord"
+    ],
+    answer: 1,
+    hint: "Its name means horse's tail."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the filum terminale?",
+    choices: [
+      "The tapered end of the spinal cord",
+      "A thin strand of pia mater anchoring the spinal cord to the coccyx",
+      "A bundle of nerve roots"
+    ],
+    answer: 1,
+    hint: "Filum means thread."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the ventral median fissure?",
+    choices: [
+      "The shallow groove along the back of the spinal cord",
+      "The deep groove along the front (anterior) of the spinal cord",
+      "The small channel in the center of the cord"
+    ],
+    answer: 1,
+    hint: "Ventral means front."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the dorsal median sulcus?",
+    choices: [
+      "The deep groove along the front of the spinal cord",
+      "The shallow groove along the back (posterior) of the spinal cord",
+      "The small channel in the center of the cord"
+    ],
+    answer: 1,
+    hint: "Dorsal means back."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Which is deeper: the ventral median fissure or the dorsal median sulcus?",
+    choices: [
+      "Dorsal median sulcus",
+      "They are the same depth",
+      "Ventral median fissure"
+    ],
+    answer: 2,
+    hint: "A fissure is deeper than a sulcus."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the central canal?",
+    choices: [
+      "A deep groove along the front of the cord",
+      "A small CSF-filled channel in the center of the spinal cord",
+      "A bundle of nerve roots"
+    ],
+    answer: 1,
+    hint: "It is continuous with the ventricles."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What shape does gray matter form in a cross section of the spinal cord?",
+    choices: [
+      "A solid circle",
+      "A butterfly or the letter H",
+      "A star"
+    ],
+    answer: 1,
+    hint: "Picture the spread wings of a butterfly."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Where is white matter located in a spinal cord cross section?",
+    choices: [
+      "Surrounding the gray matter, on the outside",
+      "In the center, inside the gray matter",
+      "Only in the horns"
+    ],
+    answer: 0,
+    hint: "Gray is in the middle."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is gray matter made of, and what is white matter made of?",
+    choices: [
+      "Gray: myelinated axons. White: cell bodies",
+      "Gray: only CSF. White: only blood vessels",
+      "Gray: cell bodies, dendrites, unmyelinated axons. White: myelinated axons in tracts"
+    ],
+    answer: 2,
+    hint: "Myelin makes tissue look white."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Name the three gray matter horns.",
+    choices: [
+      "Anterior, posterior, and lateral",
+      "Superior, inferior, and medial",
+      "Dorsal, ventral, and central"
+    ],
+    answer: 0,
+    hint: "Two are named for front and back."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What does the anterior horn contain?",
+    choices: [
+      "Cell bodies of somatic motor neurons",
+      "Interneurons receiving sensory input",
+      "Sympathetic neuron cell bodies"
+    ],
+    answer: 0,
+    hint: "Anterior is the motor side."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What does the posterior horn contain?",
+    choices: [
+      "Interneurons that receive incoming sensory information",
+      "Sympathetic neuron cell bodies",
+      "Cell bodies of somatic motor neurons"
+    ],
+    answer: 0,
+    hint: "Posterior is the sensory side."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What does the lateral horn contain, and where is it found?",
+    choices: [
+      "Sensory neuron cell bodies; only in the cervical region",
+      "Sympathetic autonomic neurons; only in the thoracic and upper lumbar regions (about T1–L2)",
+      "Somatic motor neurons; at all spinal levels"
+    ],
+    answer: 1,
+    hint: "It is not present throughout the cord."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Name the three white matter columns (funiculi) on each side.",
+    choices: [
+      "Superior, medial, and inferior",
+      "Anterior, lateral, and posterior",
+      "Ventral, central, and dorsal"
+    ],
+    answer: 1,
+    hint: "Named for their position around the gray matter."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the dorsal (posterior) root?",
+    choices: [
+      "The root that carries motor fibers out of the cord",
+      "The root that carries sensory fibers into the spinal cord",
+      "A root that carries both sensory and motor fibers"
+    ],
+    answer: 1,
+    hint: "Dorsal is the sensory side."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the ventral (anterior) root?",
+    choices: [
+      "The root that carries sensory fibers into the cord",
+      "A root that carries both sensory and motor fibers",
+      "The root that carries motor fibers out of the spinal cord"
+    ],
+    answer: 2,
+    hint: "Ventral is the motor side."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What is the dorsal root ganglion?",
+    choices: [
+      "A swelling containing the cell bodies of motor neurons",
+      "A swelling containing the cell bodies of sensory neurons",
+      "A swelling containing sympathetic preganglionic neurons"
+    ],
+    answer: 1,
+    hint: "It is on the dorsal root."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "How is a spinal nerve formed?",
+    choices: [
+      "Only the dorsal roots join, making a sensory nerve",
+      "Only the ventral roots join, making a motor nerve",
+      "The dorsal and ventral roots join, making a mixed nerve"
+    ],
+    answer: 2,
+    hint: "It carries both sensory and motor fibers."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "How many pairs of spinal nerves are there?",
+    choices: [
+      "31",
+      "12",
+      "24"
+    ],
+    answer: 0,
+    hint: "Count by region: 8 + 12 + 5 + 5 + 1."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "How are the 31 pairs divided by region?",
+    choices: [
+      "7 cervical, 12 thoracic, 5 lumbar, 5 sacral, 1 coccygeal",
+      "8 cervical, 12 thoracic, 4 lumbar, 5 sacral, 1 coccygeal",
+      "8 cervical, 12 thoracic, 5 lumbar, 5 sacral, 1 coccygeal"
+    ],
+    answer: 2,
+    hint: "The cervical region has an extra nerve."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Why are there 8 cervical nerves but only 7 cervical vertebrae?",
+    choices: [
+      "The coccygeal nerve is counted with the cervical group",
+      "C1 exits above the atlas and C8 exits below C7",
+      "There is an extra cervical vertebra in the lower neck"
+    ],
+    answer: 1,
+    hint: "The first nerve exits above its vertebra."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "What are the two enlargements of the spinal cord?",
+    choices: [
+      "Cervical and thoracic",
+      "Cervical and lumbar",
+      "Thoracic and sacral"
+    ],
+    answer: 1,
+    hint: "They supply the limbs."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Why is a lumbar puncture performed below L2?",
+    choices: [
+      "CSF is only found below L2",
+      "The dura mater is thinnest below L2",
+      "The cord ends around L1–L2, so the needle reaches CSF without hitting the cord"
+    ],
+    answer: 2,
+    hint: "Think about where the cord ends."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Which meninx forms the outermost covering of the spinal cord?",
+    choices: [
+      "Pia mater",
+      "Arachnoid mater",
+      "Dura mater"
+    ],
+    answer: 2,
+    hint: "It is the toughest layer."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Which meninx is the delicate inner layer attached to the spinal cord surface?",
+    choices: [
+      "Dura mater",
+      "Pia mater",
+      "Arachnoid mater"
+    ],
+    answer: 1,
+    hint: "It hugs the cord."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Where is the epidural space, and what does it contain?",
+    choices: [
+      "Between the arachnoid and pia mater; it holds CSF",
+      "Between the pia mater and the cord; it holds nerves",
+      "Between the dura mater and the vertebrae; it holds fat and blood vessels"
+    ],
+    answer: 2,
+    hint: "Epi means upon."
+  },
+  {
+    term: "Spinal Cord",
+    prompt: "Where does CSF flow in and around the spinal cord?",
+    choices: [
+      "Inside the dorsal median sulcus and the epidural space",
+      "Inside the central canal and in the subarachnoid space",
+      "Inside the ventral median fissure and the subdural space"
+    ],
+    answer: 1,
+    hint: "One path is inside the cord and one is outside."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "What is a nerve plexus?",
+    choices: [
+      "A ganglion containing sensory cell bodies",
+      "A single nerve that runs the length of the spinal cord",
+      "A network where ventral rami of several spinal nerves merge and then branch into named nerves"
+    ],
+    answer: 2,
+    hint: "Plexus means braid."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Name the four main plexuses.",
+    choices: [
+      "Cervical, brachial, lumbar, and sacral",
+      "Cervical, thoracic, lumbar, and coccygeal",
+      "Brachial, thoracic, sacral, and femoral"
+    ],
+    answer: 0,
+    hint: "They are named for the regions of the body."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which spinal nerves form the cervical plexus?",
+    choices: [
+      "C5–T1",
+      "C1–C4",
+      "L1–L4"
+    ],
+    answer: 1,
+    hint: "The neck region."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which spinal nerves form the brachial plexus?",
+    choices: [
+      "L4–S4",
+      "C5–T1",
+      "C1–C4"
+    ],
+    answer: 1,
+    hint: "It serves the arm."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which spinal nerves form the lumbar plexus?",
+    choices: [
+      "L1–L4",
+      "L4–S4",
+      "C5–T1"
+    ],
+    answer: 0,
+    hint: "It serves the front of the thigh."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which spinal nerves form the sacral plexus?",
+    choices: [
+      "L4–S4",
+      "L1–L4",
+      "C1–C4"
+    ],
+    answer: 0,
+    hint: "It serves the buttock, back of thigh, leg, and foot."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which region does the cervical plexus serve?",
+    choices: [
+      "Anterior thigh",
+      "Neck, parts of the head, and the diaphragm",
+      "Shoulder, arm, forearm, and hand"
+    ],
+    answer: 1,
+    hint: "It includes the phrenic nerve."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which region does the brachial plexus serve?",
+    choices: [
+      "Neck and diaphragm",
+      "Shoulder, arm, forearm, and hand",
+      "Buttock and foot"
+    ],
+    answer: 1,
+    hint: "Brachial relates to the arm."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which regions do the lumbar and sacral plexuses serve?",
+    choices: [
+      "The upper limb",
+      "The lower limb",
+      "The neck and head"
+    ],
+    answer: 1,
+    hint: "Lumbar serves mainly the anterior thigh."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which nerve arises from the cervical plexus and stimulates the diaphragm?",
+    choices: [
+      "Phrenic nerve (C3–C5)",
+      "Femoral nerve (L2–L4)",
+      "Axillary nerve (C5–C6)"
+    ],
+    answer: 0,
+    hint: "The diaphragm is needed for breathing."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "What is the memory phrase for the phrenic nerve's roots?",
+    choices: [
+      "L2, 3, 4 keeps the thigh alive",
+      "C3, 4, 5 keeps the diaphragm alive",
+      "C5, 6, 7 keeps the arm alive"
+    ],
+    answer: 1,
+    hint: "It names three cervical levels."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "What happens if both phrenic nerves are severed?",
+    choices: [
+      "The person loses all sensation in the arms",
+      "The diaphragm is paralyzed and the person cannot breathe on their own",
+      "The person cannot extend the knee"
+    ],
+    answer: 1,
+    hint: "The diaphragm is the main muscle of breathing."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which nerve of the brachial plexus supplies the deltoid and teres minor?",
+    choices: [
+      "Axillary nerve",
+      "Radial nerve",
+      "Median nerve"
+    ],
+    answer: 0,
+    hint: "It wraps around the surgical neck of the humerus."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which injury commonly damages the axillary nerve?",
+    choices: [
+      "A fracture of the femoral neck",
+      "Compression at the carpal tunnel",
+      "A fracture of the surgical neck of the humerus or a shoulder dislocation"
+    ],
+    answer: 2,
+    hint: "The nerve passes near the shoulder."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which nerve supplies the triceps and the extensors of the forearm?",
+    choices: [
+      "Ulnar nerve",
+      "Radial nerve",
+      "Median nerve"
+    ],
+    answer: 1,
+    hint: "It runs along the back of the arm."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "What condition results from radial nerve damage?",
+    choices: [
+      "Carpal tunnel syndrome",
+      "Wrist drop",
+      "Claw hand"
+    ],
+    answer: 1,
+    hint: "The wrist cannot be extended."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which nerve passes through the carpal tunnel and supplies most forearm flexors and the thenar muscles?",
+    choices: [
+      "Median nerve",
+      "Ulnar nerve",
+      "Radial nerve"
+    ],
+    answer: 0,
+    hint: "It is the nerve compressed at the wrist."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "What condition results from compression of the median nerve at the wrist?",
+    choices: [
+      "Carpal tunnel syndrome",
+      "Wrist drop",
+      "Bell's palsy"
+    ],
+    answer: 0,
+    hint: "It causes numbness in the thumb, index, and middle fingers."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which nerve runs behind the medial epicondyle (the \"funny bone\") and supplies the little finger side of the hand?",
+    choices: [
+      "Median nerve",
+      "Radial nerve",
+      "Ulnar nerve"
+    ],
+    answer: 2,
+    hint: "It is the nerve you hit at your elbow."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which nerve of the lumbar plexus supplies the quadriceps and the anterior thigh?",
+    choices: [
+      "Sciatic nerve (L4–S3)",
+      "Femoral nerve (L2–L4)",
+      "Phrenic nerve (C3–C5)"
+    ],
+    answer: 1,
+    hint: "It lets you extend the knee."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which is the largest and longest nerve in the body, and which plexus does it come from?",
+    choices: [
+      "Vagus nerve, from the cervical plexus",
+      "Sciatic nerve, from the sacral plexus",
+      "Femoral nerve, from the lumbar plexus"
+    ],
+    answer: 1,
+    hint: "It runs down the back of the thigh."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which two nerves make up the sciatic nerve?",
+    choices: [
+      "Femoral nerve and obturator nerve",
+      "Radial nerve and ulnar nerve",
+      "Tibial nerve and common fibular (peroneal) nerve"
+    ],
+    answer: 2,
+    hint: "It splits above the knee."
+  },
+  {
+    term: "Nerves and Plexuses",
+    prompt: "Which branch of the sciatic nerve supplies the posterior leg and the sole of the foot?",
+    choices: [
+      "Common fibular nerve",
+      "Tibial nerve",
+      "Femoral nerve"
+    ],
+    answer: 1,
+    hint: "It allows plantar flexion."
   }
 ];
 const brainQuestions = [
@@ -503,8 +1991,10 @@ function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
+const QUESTIONS_PER_GAME = 30;
+
 function startGame() {
-  order = shuffle(questions);
+  order = shuffle(questions).slice(0, QUESTIONS_PER_GAME);
   current = 0;
   score = 0;
   document.querySelector("#game").classList.remove("hidden");
@@ -518,7 +2008,7 @@ function showQuestion() {
   const host = hosts[current % hosts.length];
   progressEl.textContent = `Question ${current + 1} of ${order.length} · Score: ${score}`;
   hostEl.textContent = `${host.name}: ${host.intro}`;
-  questionEl.textContent = `What does “${q.term}” mean?`;
+  questionEl.textContent = q.prompt || `What does “${q.term}” mean?`;
   feedbackEl.textContent = "";
   nextButton.classList.add("hidden");
   answersEl.replaceChildren();
