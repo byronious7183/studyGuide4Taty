@@ -1991,7 +1991,7 @@ function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
-const QUESTIONS_PER_GAME = 2;
+const QUESTIONS_PER_GAME = 30;
 
 function startGame() {
   order = shuffle(questions).slice(0, QUESTIONS_PER_GAME);
