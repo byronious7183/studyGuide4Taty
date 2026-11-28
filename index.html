@@ -1774,43 +1774,43 @@ const brainQuestions = [
   {
     view: "interior",
     name: "Corpus callosum",
-    x: 52, y: 43,
+    x: 57, y: 39,
     hint: "This curved band connects the brain's two cerebral hemispheres."
   },
   {
     view: "interior",
     name: "Thalamus",
-    x: 56, y: 51,
+    x: 49, y: 52,
     hint: "This structure is near the center of the brain, above the brainstem."
   },
   {
     view: "interior",
     name: "Hypothalamus",
-    x: 57, y: 56,
+    x: 45, y: 57,
     hint: "Look just below the thalamus."
   },
   {
     view: "interior",
     name: "Pons",
-    x: 53, y: 62,
+    x: 52, y: 64,
     hint: "This rounded part of the brainstem sits in front of the cerebellum."
   },
   {
     view: "interior",
     name: "Medulla oblongata",
-    x: 51, y: 69,
+    x: 53, y: 78,
     hint: "This lower part of the brainstem continues toward the spinal cord."
   },
   {
     view: "interior",
     name: "Cerebellum",
-    x: 73, y: 64,
+    x: 65, y: 66,
     hint: "Look for the small, ridged structure at the back and bottom of the brain."
   },
   {
     view: "interior",
     name: "Occipital lobe",
-    x: 77, y: 35,
+    x: 77, y: 53,
     hint: "This lobe is at the back of the brain and is associated with vision."
   },
 
@@ -1818,31 +1818,31 @@ const brainQuestions = [
   {
     view: "exterior",
     name: "Frontal lobe",
-    x: 77, y: 35,
+    x: 78, y: 35,
     hint: "This lobe is toward the front of the brain."
   },
   {
     view: "exterior",
     name: "Parietal lobe",
-    x: 53, y: 27,
+    x: 46, y: 30,
     hint: "This lobe is near the upper rear portion of the cerebrum."
   },
   {
     view: "exterior",
     name: "Occipital lobe",
-    x: 27, y: 38,
+    x: 34, y: 52,
     hint: "This lobe is at the back of the brain."
   },
   {
     view: "exterior",
     name: "Temporal lobe",
-    x: 57, y: 48,
+    x: 66, y: 53,
     hint: "This lobe is on the side of the brain, roughly near the temples."
   },
   {
     view: "exterior",
     name: "Cerebellum",
-    x: 27, y: 68,
+    x: 46, y: 66,
     hint: "Look for the small, ridged structure at the back and bottom."
   }
 ];
@@ -1991,7 +1991,7 @@ function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
-const QUESTIONS_PER_GAME = 30;
+const QUESTIONS_PER_GAME = 2;
 
 function startGame() {
   order = shuffle(questions).slice(0, QUESTIONS_PER_GAME);
